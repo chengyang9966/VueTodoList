@@ -1,5 +1,10 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    :class="{
+      SetContainer: Name === '' || Name === null || Name === undefined
+    }"
+  >
     <div class="innerDiv">
       <h1>{{ msg }} {{ Name }}</h1>
       <div class="DateTime">
@@ -93,7 +98,8 @@
           @click="Completed()"
           class="IndividualBtn"
           :class="{
-            ActiveButton: TotalItem === 'Completed'
+            ActiveButton: TotalItem === 'Completed',
+            HideCountItem: Todos.filter(x => x.completed).length === 0
           }"
         >
           Completed
@@ -119,6 +125,9 @@ export default {
   },
   created() {
     setInterval(this.getNow, 1000);
+  },
+  props: {
+    Name: String
   },
   computed: {
     ...mapState({
@@ -155,7 +164,6 @@ export default {
   data() {
     return {
       msg: "",
-      Name: "Cheng Yang",
       TodayDate: `${moment(new Date()).format("DD/MM/YYYY")}`,
       newTodo: "",
       timestamp: "",
@@ -279,6 +287,9 @@ a {
 }
 .container {
   align-items: center;
+}
+.SetContainer {
+  display: none;
 }
 .innerDiv {
   margin: 0px 40px;
@@ -486,6 +497,10 @@ a {
   .Day {
     position: fixed;
     right: 10vw;
+  }
+  .label {
+    position: absolute;
+    top: 2px;
   }
 }
 </style>
