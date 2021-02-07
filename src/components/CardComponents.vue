@@ -64,11 +64,13 @@ export default {
       DefaultValue: ""
     };
   },
-  computed: mapState({
-    IndividualItem: function(state) {
-      return state.individualItem;
-    }
-  }),
+  computed: {
+    ...mapState({
+      IndividualItem: function(state) {
+        return state.individualItem;
+      }
+    })
+  },
 
   directives: {
     focus: {
@@ -87,7 +89,6 @@ export default {
     submit(IndividualItem) {
       switch (this.Title) {
         case "Add":
-          IndividualItem.id = IndividualItem.id + 1;
           store.dispatch({
             type: Types.addTodo,
             action: IndividualItem

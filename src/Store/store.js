@@ -6,7 +6,7 @@ const store = new Vuex.Store({
   state: {
     newTodo: "",
     beforeEdit: "",
-    idForTodo: 1,
+    idForTodo: 0,
     TotalItem: "All",
     individualItem: {
       id: "",
@@ -25,6 +25,8 @@ const store = new Vuex.Store({
   //Reducer
   mutations: {
     addTodo(state, payload) {
+      console.log("🚀 ~ file: store.js ~ line 28 ~ payload", payload);
+      payload.action.id = state.idForTodo + 1;
       return (
         (state.TotalItem = "All"),
         (state.Completed = []),

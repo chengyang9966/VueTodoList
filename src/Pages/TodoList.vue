@@ -8,7 +8,7 @@
     <div class="innerDiv">
       <h1>{{ msg }} {{ Name }}</h1>
       <div class="DateTime">
-        <span>Today's tasks</span>
+        <span></span>
         <span>{{ TodayDate }}</span>
       </div>
       <div v-for="todo in Todos" :key="todo.id" class="todoItem">
@@ -309,7 +309,7 @@ a {
   margin-left: 70px;
   margin-bottom: 10px;
   margin-right: 70px;
-  color: #333456;
+  color: #d3d3d3;
   justify-content: space-between;
 }
 
@@ -378,6 +378,7 @@ a {
 .removeItem {
   cursor: pointer;
   margin-left: 14px;
+  color: #979ae4;
 }
 .removeItemHidden {
   display: none;
@@ -441,6 +442,7 @@ a {
   align-items: center;
   justify-content: space-between;
   margin: 30px 80px;
+  color: rgb(169, 137, 195);
 }
 .HideCountItem {
   display: none;
@@ -455,7 +457,7 @@ a {
   color: #80ffdb;
 }
 .IndividualBtn {
-  color: #333456;
+  color: #979ae4;
 }
 .ActiveButton {
   color: white;
