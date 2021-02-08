@@ -2,7 +2,12 @@
   <div id="app">
     <img src="./assets/logo.png" />
     <!-- <LoginPage v-if="Login === false" /> -->
-    <PopUp :title="Name" :Click="SetNewItem" @method="CloseDialog" />
+    <PopUp
+      v-if="DefaultValue === null || DefaultValue === undefined"
+      :title="Name"
+      :Click="SetNewItem"
+      @method="CloseDialog"
+    />
     <TodoList :Name="DefaultValue" />
   </div>
 </template>
@@ -22,14 +27,13 @@ export default {
     return {
       SetNewItem: true,
       Name: "What is your Name?",
-      DefaultValue: ""
+      DefaultValue: localStorage.getItem("Name")
     };
   },
   mounted: {},
   methods: {
-    CloseDialog(Value) {
+    CloseDialog() {
       this.SetNewItem = false;
-      this.DefaultValue = Value;
     }
   }
 };

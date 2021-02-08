@@ -16,7 +16,6 @@
       </div>
       <button
         @click="submit(DefaultValue)"
-        @mouseup="submit(DefaultValue)"
         :disabled="DefaultValue === ''"
         class="submit_button"
       >
@@ -47,7 +46,8 @@ export default {
   },
   methods: {
     submit(DefaultValue) {
-      this.$emit("method", DefaultValue);
+      this.$emit("method");
+      localStorage.setItem("Name", DefaultValue);
     }
   }
 };

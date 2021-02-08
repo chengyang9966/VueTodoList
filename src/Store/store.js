@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
-
+const MainKey = "todosList";
 const store = new Vuex.Store({
   state: {
     newTodo: "",
@@ -16,7 +16,7 @@ const store = new Vuex.Store({
       editing: false,
       DueTime: ""
     },
-    todos: [],
+    todos: JSON.parse(localStorage.getItem(MainKey) || []),
     Completed: [],
     Active: [],
     DisableStatus: ""
@@ -25,7 +25,10 @@ const store = new Vuex.Store({
   //Reducer
   mutations: {
     addTodo(state, payload) {
-      console.log("🚀 ~ file: store.js ~ line 28 ~ payload", payload);
+      localStorage.setItem(
+        MainKey,
+        JSON.stringify([...state.todos, payload.action])
+      );
       payload.action.id = state.idForTodo + 1;
       return (
         (state.TotalItem = "All"),
@@ -47,6 +50,18 @@ const store = new Vuex.Store({
       if (payload.action.completed == true) {
         return state;
       } else {
+        localStorage.setItem(
+          MainKey,
+          JSON.stringify(
+            state.todos.map(x => {
+              if (x.id === payload.action.id) {
+                return (x = payload.action);
+              } else {
+                return x;
+              }
+            })
+          )
+        );
         return (
           (state.TotalItem = "All"),
           (state.Completed = []),
@@ -68,6 +83,18 @@ const store = new Vuex.Store({
       }
     },
     cancelEdit(state, payload) {
+      localStorage.setItem(
+        MainKey,
+        JSON.stringify(
+          state.todos.map(x => {
+            if (x.id === payload.action.id) {
+              return (x = payload.action);
+            } else {
+              return x;
+            }
+          })
+        )
+      );
       return (
         (state.beforeEdit = state.todos.map(x => {
           if (x.id === payload.action.id) {
@@ -84,6 +111,18 @@ const store = new Vuex.Store({
       );
     },
     EditTodoCard(state, payload) {
+      localStorage.setItem(
+        MainKey,
+        JSON.stringify(
+          state.todos.map(x => {
+            if (x.id === payload.action.id) {
+              return payload.action;
+            } else {
+              return x;
+            }
+          })
+        )
+      );
       return (
         (state.individualItem = {
           id: "",
@@ -103,6 +142,18 @@ const store = new Vuex.Store({
       );
     },
     completeTasks(state, payload) {
+      localStorage.setItem(
+        MainKey,
+        JSON.stringify(
+          state.todos.map(x => {
+            if (x.id === payload.action.id) {
+              return payload.action;
+            } else {
+              return x;
+            }
+          })
+        )
+      );
       return (
         (state.TotalItem = "All"),
         (state.Active = state.Active.filter(x => x.id !== payload.action.id)),
@@ -116,9 +167,14 @@ const store = new Vuex.Store({
       );
     },
     removeTodo(state, payload) {
+      localStorage.setItem(
+        MainKey,
+        JSON.stringify(state.todos.filter(x => x.id !== payload.action))
+      );
       return (state.todos = state.todos.filter(x => x.id !== payload.action));
     },
     cancelCard(state) {
+      localStorage.setItem(state.MainKey, JSON.stringify(state.todos));
       return (state.todos = state.todos), (state.individualItem = {});
     },
     Active(state) {
