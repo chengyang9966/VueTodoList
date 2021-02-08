@@ -3,11 +3,7 @@
     <img src="./assets/logo.png" />
     <!-- <LoginPage v-if="Login === false" /> -->
     <PopUp
-      v-if="
-        DefaultValue === null ||
-          DefaultValue === undefined ||
-          DefaultValue === ''
-      "
+      v-if="DefaultValue === null || DefaultValue === undefined"
       :title="Name"
       :Click="SetNewItem"
       @method="CloseDialog"
@@ -31,7 +27,7 @@ export default {
     return {
       SetNewItem: true,
       Name: "What is your Name?",
-      DefaultValue: localStorage.getItem("Name") || ""
+      DefaultValue: localStorage.getItem("Name")
     };
   },
   mounted: {},
