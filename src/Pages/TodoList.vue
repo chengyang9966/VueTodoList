@@ -401,7 +401,7 @@ a {
   padding: 10px;
   margin-left: 30px;
   color: #fff;
-  position: fixed;
+  position: absolute;
   right: 18vw;
 }
 .CompletedTasksTitle {
@@ -485,19 +485,19 @@ a {
     margin: 20px 0px;
   }
   .Day {
-    position: fixed;
+    position: absolute;
     right: 20vw;
   }
 }
 @media only screen and (min-width: 1000px) {
   .Day {
-    position: fixed;
+    position: absolute;
     right: 15vw;
   }
 }
 @media only screen and (min-width: 1500px) {
   .Day {
-    position: fixed;
+    position: absolute;
     right: 10vw;
   }
   .label {
