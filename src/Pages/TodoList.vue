@@ -394,15 +394,15 @@ a {
 }
 .todo_item_label {
   padding: 10px;
-  margin-left: 30px;
+  width: 10vw;
   color: #fff;
 }
 .Day {
   padding: 10px;
   margin-left: 30px;
   color: #fff;
-  position: fixed;
-  right: 18vw;
+  position: relative;
+  left: 65vw;
 }
 .CompletedTasksTitle {
   color: #fff;
@@ -478,27 +478,60 @@ a {
     overflow: hidden;
     white-space: nowrap;
     padding: 10px;
-    width: 100px;
+    width: 150px;
     text-overflow: ellipsis;
   }
   .CountItem {
     margin: 20px 0px;
   }
   .Day {
-    position: fixed;
-    right: 20vw;
+    position: relative;
+    left: 25vw;
   }
 }
+
+@media only screen and (min-width: 600px) {
+  .Day {
+    position: relative;
+    left: 13vw;
+  }
+  .todo_item_label {
+    width: 25vw;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .Day {
+    position: relative;
+    left: 27vw;
+  }
+  .todo_item_label {
+    width: 20vw;
+  }
+}
+
 @media only screen and (min-width: 1000px) {
   .Day {
-    position: fixed;
-    right: 15vw;
+    position: relative;
+    left: 50vw;
+  }
+  .todo_item_label {
+    width: 13vw;
   }
 }
 @media only screen and (min-width: 1500px) {
   .Day {
-    position: fixed;
-    right: 10vw;
+    position: relative;
+    left: 65vw;
+  }
+  .label {
+    position: absolute;
+    top: 2px;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  .Day {
+    position: relative;
+    left: 60vw;
   }
   .label {
     position: absolute;
